@@ -29,6 +29,28 @@
             <TextBlock x:Name="tbDate" Text=""/>
         </StatusBar>
 
+        <Menu>
+            
+            <MenuItem Header="Файл">
+                <MenuItem Header="Сохранить" Click="btnSave_Click"/>
+                <MenuItem Header="Открыть" Click="btnOpen_Click"/>
+                <Separator/>
+                <MenuItem Header="Выход" Click="btnExit_Click"/>
+            </MenuItem>
+
+            <MenuItem Header="Справка">
+                <MenuItem Header="О программе" Click="btnInfo_Click"/>
+            </MenuItem>
+
+            <MenuItem Header="Программа">
+                <MenuItem Header="Создать" Click="btnCreate_Click"/>
+                <MenuItem Header="Заполнить" Click="btnFIll_Click"/>
+                <Separator/>
+                <MenuItem Header="Получить результат" Click="btnResult_Click"/>
+            </MenuItem>
+            
+        </Menu>
+
         <Grid Grid.Row="1">
 
             <Grid.ColumnDefinitions>
@@ -76,7 +98,7 @@
                 <Button Grid.Row="5"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
-                        Content="О программе"
+                        Content="Выход"
                         FontSize="20"
                         Click="btnExit_Click"
                         Background="White"
@@ -95,7 +117,16 @@
                             Click="btnOpen_Click"/>
                 
                 </ToolBar>
-                
+
+                <Grid.ContextMenu>
+                    <ContextMenu>
+
+                        <MenuItem Header="Получить результат" 
+                                      Click="btnResult_Click"/>
+
+                    </ContextMenu>
+                </Grid.ContextMenu>
+
             </Grid>
 
             <Grid>
@@ -107,7 +138,10 @@
 
                 <Label Content="Начальные значения:"
                        FontSize="20"/>
-                <DataGrid Grid.Row="1"/>
+                
+                <DataGrid Grid.Row="1"
+                          x:Name="dataGid"
+                          CellEditEnding="dataGrid_CellEditing"/>
 
                 <Grid Grid.Row="2">
                     
@@ -122,14 +156,14 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Label Content="N"
+                    <Label Content="M"
                            Grid.Row="0"
                            Grid.Column="0"
                            FontSize="20"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"/>
 
-                    <Label Content="M"
+                    <Label Content="N"
                            Grid.Row="0"
                            Grid.Column="1"
                            FontSize="20"
@@ -141,14 +175,14 @@
                              FontSize="20"
                              VerticalAlignment="Stretch"
                              HorizontalAlignment="Stretch"
-                             x:Name="tbN"/>
+                             x:Name="tbM"/>
 
                     <TextBox Grid.Column="1"
                              Grid.Row="1"
                              FontSize="20"
                              VerticalAlignment="Stretch"
                              HorizontalAlignment="Stretch"
-                             x:Name="tbM"/>
+                             x:Name="tbN"/>
 
                     <Button Grid.Column="0"
                             Grid.Row="2"
@@ -156,7 +190,7 @@
                             FontSize="20"
                             Background="White"
                             Click="btnCreate_Click"
-                            ToolTip="Создать матрицу размером N x M"/>
+                            ToolTip="Создать матрицу размером M x N"/>
 
                     <Button Grid.Column="1"
                             Grid.Row="2"
@@ -166,6 +200,18 @@
                             Click="btnFIll_Click"
                             ToolTip="Заполнить таблицу случайными значениями"/>
 
+                    <Grid.ContextMenu>
+                        <ContextMenu>
+                            
+                            <MenuItem Header="Создать таблицу" 
+                                      Click="btnCreate_Click"/>
+                            
+                            <MenuItem Header="Заполнить таблицу"
+                                      Click="btnFIll_Click"/>
+            
+                        </ContextMenu>
+                    </Grid.ContextMenu>
+                    
                 </Grid>
                 
             </Grid>

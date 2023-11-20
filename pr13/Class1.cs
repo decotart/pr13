@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace pr13
             for (int j = 0; j < matrix.GetLength(1); j++)
             {
                 count1 = 0; count2 = 0;
-                
+
                 for (int i = 0; i < matrix.GetLength(0); i++)
                 {
                     if (matrix[i, j] < 0) count1++;
@@ -97,6 +98,48 @@ namespace pr13
             }
             return null;
 
+        }
+
+    }
+
+    public static class VisualArray
+    {
+        public static DataTable ToDataTable<T>(this T[] arr)
+        {
+            var res = new DataTable();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                res.Columns.Add("col" + (i + 1), typeof(T));
+            }
+            var row = res.NewRow();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                row[i] = arr[i];
+            }
+            res.Rows.Add(row);
+            return res;
+        }
+        public static DataTable ToDataTable<T>(this T[,] matrix)
+        {
+            var res = new DataTable();
+            for (int i = 0; i < matrix.GetLength(1); i++)
+            {
+                res.Columns.Add("col" + (i + 1), typeof(T));
+            }
+
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                var row = res.NewRow();
+
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    row[j] = matrix[i, j];
+                }
+
+                res.Rows.Add(row);
+            }
+
+            return res;
         }
     }
 }
