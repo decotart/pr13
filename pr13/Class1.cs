@@ -11,6 +11,11 @@ namespace pr13
 {
     public class Soluiton
     {
+        /// <summary>
+        /// находит номер последнего столбца, содержащего равное количество положительных и отрицательных элементов
+        /// </summary>
+        /// <param name="matrix">матрица</param>
+        /// <returns>номер последнего столбца, содержащего равное количество положительных и отрицательных элементов</returns>
         public static int GetResult(int[,] matrix)
         {
             int count1, count2, result = 0;

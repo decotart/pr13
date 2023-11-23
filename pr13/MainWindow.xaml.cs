@@ -152,6 +152,8 @@ namespace pr13
             {
                 MessageBox.Show("Что-то пошло не так");
             }
+
+            tbResult.Clear();
         }
     }
 }

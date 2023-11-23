@@ -12,7 +12,7 @@
         Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
         Height="450"
-        Width="450">
+        Width="450" Icon="/bm2370.ico">
     <Grid>
 
         <Grid.RowDefinitions>
